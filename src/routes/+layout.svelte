@@ -27,7 +27,7 @@
   if (browser) {
     const appCheckOptions = {
       provider: new ReCaptchaV3Provider(
-        "a6LcolbMoAAAAAKCG__tdi0n5bBvKNB_tsqM8pklb"
+        "6LcolbMoAAAAAKCG__tdi0n5bBvKNB_tsqM8pklb"
       ),
     };
 
