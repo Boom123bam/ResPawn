@@ -7,6 +7,12 @@
   import Footer from "../components/Footer.svelte";
   import { page } from "$app/stores";
   import "./layout.css";
+  import {
+    ReCaptchaV3Provider,
+    initializeAppCheck,
+  } from "firebase/app-check";
+  import { browser } from "$app/environment";
+  import { app } from "../firebase";
 
   auth.onAuthStateChanged(function (user) {
     if (user) {
@@ -17,6 +23,21 @@
       userData.set(null);
     }
   });
+
+  if (browser) {
+    const appCheckOptions = {
+      provider: new ReCaptchaV3Provider(
+        "a6LcolbMoAAAAAKCG__tdi0n5bBvKNB_tsqM8pklb"
+      ),
+    };
+
+    if (import.meta.env.DEV) {
+      self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+    }
+
+    // Initialize AppCheck with the options
+    initializeAppCheck(app, appCheckOptions);
+  }
 </script>
 
 <div class="app">
